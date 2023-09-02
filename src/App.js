@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import React,{Component} from 'react';
 import './App.css';
+import {init} from './GameEngine/GameManager.js'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+
+class App extends Component  {
+  constructor(props) {
+    super(props);
+    this.score = React.createRef()
+    this.gameBoard = React.createRef()
+  }
+
+  componentDidMount(){
+    init(this.gameBoard,this.score)
+  }
+
+  render(){
+    return (
+      <div >
+        <div id="header"><h2>SnakeGame</h2><span ref={this.score}></span></div>
+          <div  ref={this.gameBoard} className="App" id="gameBoard">   
+        </div>
+      </div>
   );
+}
 }
 
 export default App;
